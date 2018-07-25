@@ -12,6 +12,12 @@ ng serve
 
 And open the server in the url: http://localhost:4200
 
+For a quick access to application the simplest way is launch index.html file located in the path: 
+
+angular-version/dist/angular-version/index.html
+
+## Other deploys
+
  If you want to use the builded project, it is located in dist/angular-version/ folder, for this is neccesary that you have installed node, just check if you have installed it using the following command:
 
  ```
