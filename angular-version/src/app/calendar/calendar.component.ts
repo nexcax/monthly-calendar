@@ -18,6 +18,18 @@ export class CalendarComponent implements AfterViewInit {
   @Input() dataStream$: Subject<EntryCalendar>;
   calendarData: any[] = [];
   calendars: any[] = [];
+  holidays = [
+    'May 29',
+    'June 14',
+    'July 4',
+    'September 4',
+    'September 11',
+    'October 31',
+    'November 11',
+    'November 23',
+    'December 25',
+    'December 31'
+  ];
 
   constructor() {}
 
@@ -53,6 +65,7 @@ export class CalendarComponent implements AfterViewInit {
         }
         lastMonth = current.clone();
       }
+      // initial days disabled
       if (!(current.format(formatKey) in calendarData)) {
         calendarData[current.format(formatKey)] = [];
         for (let i = 0; i < current.day(); i++) {
@@ -64,16 +77,18 @@ export class CalendarComponent implements AfterViewInit {
           });
         }
       }
+      // regular days
       calendarData[current.format(formatKey)].push({
         disabled: false,
         dayNumber: current.format('D'),
-        isHoliday: false,
+        isHoliday: this.isHoliday(current.format(formatKey), current.format('D')),
         weekDay: current.day()
       });
       lastPrintedDate = current;
       incrementDay++;
       current = start.clone().add(incrementDay, 'days');
     }
+    // end of month control for disabled days
     if (lastPrintedDate.day() < 6) {
       for (let i = lastPrintedDate.day(); i < 6; i++) {
         const lastWeekDay =
@@ -90,4 +105,14 @@ export class CalendarComponent implements AfterViewInit {
     this.calendars = Object.keys(calendarData);
     this.calendarData = calendarData;
   }
+
+  isHoliday(monthYear: string, dayNumber: any) {
+    const month = monthYear.split(' ')[0].trim();
+    if (this.holidays.includes(`${month} ${dayNumber}`)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }
