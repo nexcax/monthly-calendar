@@ -16,7 +16,12 @@
       <div
         class="calendar-day"
         *ngFor="let day of calendarData[calendar]"
-        [ngClass]="{'day-disabled': day.disabled, 'day-active': !day.disabled, 'day-weekend': day.isWeekend}"
+        [ngClass]="{
+          'day-disabled': day.disabled,
+          'day-active': !day.disabled,
+          'day-weekend': !day.disabled && (day.weekDay === 0 || day.weekDay === 6),
+          'day-holiday': !day.disabled && day.isHoliday
+        }"
       >
         {{ day.dayNumber }}
       </div>

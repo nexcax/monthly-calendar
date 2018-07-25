@@ -22,7 +22,7 @@
 }
 
 .calendar-month {
-  background-color: #EAF6D6;
+  background-color: #eaf6d6;
   text-align: center;
   font-weight: bold;
 }
@@ -40,13 +40,13 @@
 }
 
 .day-disabled {
-  background-color: #CCCCCD;
+  background-color: #cccccd;
 }
 
-// .day-weekend {
-//   background-color: #F5FC20;
-// }
-
 .day-active {
-  background-color: #BCD1AF;
+  background-color: #bcd1af;
+}
+
+.day-weekend {
+  background-color: #f5fc20;
 }
