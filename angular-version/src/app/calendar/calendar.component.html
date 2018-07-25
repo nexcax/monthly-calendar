@@ -1,0 +1,25 @@
+<div class="calendar-container" *ngFor="let calendar of calendars">
+  <div class="calendar">
+    <div class="calendar-header">
+      <div class="calendar-head-cell">S</div>
+      <div class="calendar-head-cell">M</div>
+      <div class="calendar-head-cell">T</div>
+      <div class="calendar-head-cell">W</div>
+      <div class="calendar-head-cell">T</div>
+      <div class="calendar-head-cell">F</div>
+      <div class="calendar-head-cell">S</div>
+    </div>
+    <div class="calendar-month">
+      {{ calendar }}
+    </div>
+    <div class="calendar-content">
+      <div
+        class="calendar-day"
+        *ngFor="let day of calendarData[calendar]"
+        [ngClass]="{'day-disabled': day.disabled, 'day-active': !day.disabled, 'day-weekend': day.isWeekend}"
+      >
+        {{ day.dayNumber }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,20 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="renderCalendar()">
   <mat-form-field>
-    <input matInput type="text" formControlName="startDate">
+    <input matInput [matDatepicker]="datePicker" placeholder="Start date" formControlName="startDate" autocomplete="off">
+    <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+    <mat-datepicker #datePicker></mat-datepicker>
   </mat-form-field>
+  <mat-form-field>
+    <input type="number" formControlName="daysNumber" matInput placeholder="Number of days" autocomplete="off">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" formControlName="countryCode" matInput placeholder="Country Code" autocomplete="off">
+  </mat-form-field>
+  <button type="submit" mat-raised-button color="primary">Render</button>
 </form>
+
+<div>
+  <app-calendar
+    [dataStream$]="dataStream$"
+  ></app-calendar>
+</div>
